@@ -24,6 +24,7 @@ export class UsersService {
 
     async getUserByLogin(login: string) {
         const user = await this.userRepository.findOne({ where: { login }, include: { all: true } });
+        console.log(user)
         return user;
     }
 
