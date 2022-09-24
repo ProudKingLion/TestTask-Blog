@@ -4,7 +4,7 @@ import { User } from 'src/users/users.model';
 import { CommentController } from './comment.controller';
 import { CommentsService } from './comment.service';
 import { Comment } from './comment.model';
-import { ArticleModule } from 'src/article/article.module';
+import { ArticleModule } from 'src/articles/articles.module';
 import { UsersModule } from 'src/users/users.module';
 import { AuthModule } from 'src/auth/auth.module';
 

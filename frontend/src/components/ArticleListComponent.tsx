@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ArticleService from "../API/ArticleService";
 import { useFetching } from "../hooks/useFetching";
+import { IPreviewArticle } from "../models/IPreviewArticle";
 import ArticleBlock from "./ArticleBlock";
 
-interface IArticles {
-    id: number;
-    title: string;
-    previewText: string;
-    image: string;
+interface IArticleListComponent {
+    articles: IPreviewArticle[];
+    isLoading: boolean;
 }
 
-const ArticleListComponent = () => {
-    const [articles, setArticles] = useState<IArticles[]>([]);
+const ArticleListComponent: FC<IArticleListComponent> = ({
+    articles,
+    isLoading,
+}) => {
+    // const [articles, setArticles] = useState<IArticles[]>([]);
 
-    const {
-        fetching: fetchArticles,
-        isLoading,
-        error,
-    } = useFetching(async () => {
-        const response = await ArticleService.getAll();
+    // const {
+    //     fetching: fetchArticles,
+    //     isLoading,
+    //     error,
+    // } = useFetching(async () => {
+    //     const response = await ArticleService.getAll();
 
-        setArticles(response.data);
-    });
+    //     setArticles(response.data);
+    // });
 
-    useEffect(() => {
-        fetchArticles();
-    }, []);
+    // useEffect(() => {
+    //     fetchArticles();
+    // }, []);
 
     // useEffect(() => {
     //     console.log(articles);

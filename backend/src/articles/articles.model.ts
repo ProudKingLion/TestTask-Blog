@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { User } from 'src/users/users.model';
 import { ArticleCategory } from '../article-category/article-category.model';
-import { Comment } from './../comment/comment.model';
+import { Comment } from '../comment/comment.model';
 
 interface ArticleCreationAttrs {
     title: string;

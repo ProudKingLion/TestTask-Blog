@@ -5,12 +5,19 @@ import Main from "../pages/Main";
 import NotFound from "../pages/NotFound";
 // import SelectLobby from "../pages/SelectLobby";
 import { privateRoutes, publicRoutes } from "../router";
+import { observer } from "mobx-react-lite";
 // import { AuthContext } from "./../context/index";
 import { Context } from "..";
 
 const AppRouter = () => {
     // const { isAuth, setIsAuth } = useContext(AuthContext);
     const { store } = useContext(Context);
+
+    // console.log(store.isAuth);
+
+    if (store.isLoading) {
+        return <div>Загрузка...</div>;
+    }
 
     return store.isAuth ? (
         <Routes>
@@ -19,7 +26,7 @@ const AppRouter = () => {
                     <Route
                         key={rote.path}
                         path={rote.path}
-                        element={rote.component()}
+                        element={<rote.component />}
                     />
                 );
             })}
@@ -32,7 +39,7 @@ const AppRouter = () => {
                     <Route
                         key={rote.path}
                         path={rote.path}
-                        element={rote.component()}
+                        element={<rote.component />}
                     />
                 );
             })}
@@ -41,4 +48,4 @@ const AppRouter = () => {
     );
 };
 
-export default AppRouter;
+export default observer(AppRouter);

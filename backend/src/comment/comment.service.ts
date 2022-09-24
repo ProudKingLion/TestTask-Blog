@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { ArticlesService } from 'src/article/article.service';
+import { ArticlesService } from 'src/articles/articles.service';
 import { UsersService } from 'src/users/users.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { Comment } from './comment.model'

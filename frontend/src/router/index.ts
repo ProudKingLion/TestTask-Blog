@@ -1,6 +1,6 @@
 import { JsxElement } from "typescript";
 import Main from "../pages/Main";
-import Categories from "../pages/Categories";
+import CategoryId from "../pages/CategoryId";
 import ArticleId from "../pages/ArticleId";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
@@ -12,7 +12,7 @@ interface Irotes {
 
 export const privateRoutes: Irotes[] = [
     { path: '/', component: Main },
-    { path: '/categories', component: Categories },
+    { path: '/category/:id', component: CategoryId },
     { path: '/article/:id', component: ArticleId },
 
 ]
@@ -21,6 +21,6 @@ export const publicRoutes: Irotes[] = [
     { path: '/', component: Main },
     { path: '/login', component: Login },
     { path: '/registration', component: Registration },
-    { path: '/categories', component: Categories },
+    { path: '/category/:id', component: CategoryId },
     { path: '/article/:id', component: ArticleId },
 ] 

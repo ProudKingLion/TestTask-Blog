@@ -1,16 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "..";
+import { IInputsRegistration } from "../models/IInputs";
+import AuthInput from "./AuthInput";
 // import { AuthContext } from "../context";
 import Button from "./UI/Button";
 
 const LoginComponent = () => {
-    // const { isAuth, setIsAuth } = useContext(AuthContext);
+    const [inputs, setInputs] = useState({} as IInputsRegistration);
+    const { store } = useContext(Context);
 
-    // const login = (event) => {
-    //     event.preventDefault();
-    //     setIsAuth(true);
-    //     localStorage.setItem("auth", "true");
-    // };
+    const handleChange = (event: any) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs((values) => ({ ...values, [name]: value }));
+    };
+
+    const handleSubmit = (event: any) => {
+        console.log(inputs);
+        event.preventDefault();
+    };
 
     return (
         <>
@@ -24,44 +33,49 @@ const LoginComponent = () => {
                             Зарегистрироваться
                         </h2>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+                    <form
+                        className="mt-8 space-y-6"
+                        onSubmit={(e) => handleSubmit(e)}
+                    >
                         <input
                             type="hidden"
                             name="remember"
                             defaultValue="true"
                         />
                         <div className="-space-y-px rounded-md shadow-sm">
-                            <div>
-                                <label htmlFor="login" className="sr-only">
-                                    Login
-                                </label>
-                                <input
-                                    id="login"
-                                    name="login"
-                                    type="login"
-                                    autoComplete="login"
-                                    required
-                                    className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    placeholder="Логин"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="password" className="sr-only">
-                                    Password
-                                </label>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    required
-                                    className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    placeholder="Пароль"
-                                />
-                            </div>
+                            <AuthInput
+                                title="login"
+                                placeholder="Логин"
+                                value={inputs.login || ""}
+                                change={handleChange}
+                                borderSide="top"
+                            />
+                            <AuthInput
+                                title="name"
+                                placeholder="Имя"
+                                value={inputs.name || ""}
+                                change={handleChange}
+                            />
+                            <AuthInput
+                                title="password"
+                                placeholder="Пароль"
+                                value={inputs.password || ""}
+                                change={handleChange}
+                                borderSide="bottom"
+                            />
                         </div>
 
-                        <Button link="#">Зарегистрироваться</Button>
+                        <Button
+                            onClick={() =>
+                                store.registration(
+                                    inputs.name,
+                                    inputs.login,
+                                    inputs.password
+                                )
+                            }
+                        >
+                            Зарегистрироваться
+                        </Button>
                         <p className="mt-6 text-center text-base font-medium text-gray-500">
                             Уже есть аккаунт?{" "}
                             <Link
@@ -69,6 +83,11 @@ const LoginComponent = () => {
                                 className="text-indigo-600 hover:text-indigo-500"
                             >
                                 Войти
+                            </Link>
+                        </p>
+                        <p className="!mt-3 text-center text-base font-medium text-gray-500">
+                            <Link to="/" className="hover:text-indigo-500">
+                                На главную
                             </Link>
                         </p>
                     </form>

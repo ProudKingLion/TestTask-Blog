@@ -16,4 +16,9 @@ export class ArticleCategoryService {
         const categories = await this.articleCategoryRepository.findAll();
         return categories;
     }
+
+    async getCategoryByPk(id: number) {
+        const category = await this.articleCategoryRepository.findByPk(id);
+        return category;
+    }
 }

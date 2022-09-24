@@ -21,17 +21,17 @@ export const Context = createContext<State>({
 });
 
 root.render(
-    <React.StrictMode>
-        <Context.Provider
-            value={{
-                store,
-            }}
-        >
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </Context.Provider>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <Context.Provider
+        value={{
+            store,
+        }}
+    >
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Context.Provider>
+    // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

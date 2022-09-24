@@ -7,13 +7,18 @@ export default class AuthService {
         return $api.post<AuthResponse>('/auth/login', { login: login, password: password })
     }
 
-    static async registration(login: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-        return $api.post<AuthResponse>('/auth/registration', { login, password })
+    static async refresh(token: string): Promise<AxiosResponse<AuthResponse>> {
+        console.log({ token: token })
+        return $api.post<AuthResponse>('/auth/refresh', { token: token })
     }
 
-    static async logout(): Promise<void> {
-        return $api.post('/logout')
+    static async registration(name: string, login: string, password: string): Promise<AxiosResponse<AuthResponse>> {
+        return $api.post<AuthResponse>('/auth/registration', { name, login, password })
     }
+
+    // static async logout(): Promise<void> {
+    //     return $api.post('/logout')
+    // }
 
 }
 

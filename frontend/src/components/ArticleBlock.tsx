@@ -15,7 +15,7 @@ const ArticleBlock: FC<IPost> = ({ id, title, textPreview, imgLink }) => {
         <div className="xl:flex">
             <img
                 className="object-cover w-full h-56 rounded-lg xl:w-64"
-                src={imgLink}
+                src={`/${imgLink}`}
                 alt=""
             />
 

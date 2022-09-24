@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
@@ -20,77 +20,39 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import LoginButton from "./LoginButton";
 import Button from "./UI/Button";
-
-const categories = [
-    {
-        title: "Analytics",
-        href: "#",
-    },
-    {
-        title: "Analytics",
-        href: "#",
-    },
-    {
-        title: "Analytics",
-        href: "#",
-    },
-    {
-        title: "Analytics",
-        href: "#",
-    },
-    {
-        title: "Analytics",
-        href: "#",
-    },
-];
-const callsToAction = [
-    { name: "Watch Demo", href: "#", icon: PlayIcon },
-    { name: "Contact Sales", href: "#", icon: PhoneIcon },
-];
-const resources = [
-    {
-        name: "Help Center",
-        description:
-            "Get all of your questions answered in our forums or contact support.",
-        href: "#",
-        icon: LifebuoyIcon,
-    },
-    {
-        name: "Guides",
-        description:
-            "Learn how to maximize our platform to get the most out of it.",
-        href: "#",
-        icon: BookmarkSquareIcon,
-    },
-    {
-        name: "Events",
-        description:
-            "See what meet-ups and other events we might be planning near you.",
-        href: "#",
-        icon: CalendarIcon,
-    },
-    {
-        name: "Security",
-        description: "Understand how we take your privacy seriously.",
-        href: "#",
-        icon: ShieldCheckIcon,
-    },
-];
-const recentPosts = [
-    { id: 1, name: "Boost your conversion rate", href: "#" },
-    {
-        id: 2,
-        name: "How to use search engine optimization to drive traffic to your site",
-        href: "#",
-    },
-    { id: 3, name: "Improve your customer experience", href: "#" },
-];
+import { Link, useNavigate } from "react-router-dom";
+import { Context } from "..";
+import { observer } from "mobx-react-lite";
+import { ICategories } from "./../models/ICategories";
+import { useFetching } from "../hooks/useFetching";
+import ArticleCategoriesService from "../API/ArticleCategoriesService";
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
 }
 
 const HeaderComponent = () => {
+    const navigate = useNavigate();
+    const { store } = useContext(Context);
+
+    const [articleCategories, setArticleCategories] = useState<ICategories[]>(
+        []
+    );
+
+    const {
+        fetching: fetchArticleCategories,
+        isLoading,
+        error,
+    } = useFetching(async () => {
+        const response = await ArticleCategoriesService.getAll();
+
+        setArticleCategories(response.data);
+    });
+
+    useEffect(() => {
+        fetchArticleCategories();
+    }, []);
+
     return (
         <>
             <Popover className="relative bg-white">
@@ -120,9 +82,9 @@ const HeaderComponent = () => {
                             as="nav"
                             className="hidden space-x-8 lg:flex"
                         >
-                            <a
-                                key={"Main"}
-                                href={"/"}
+                            <Link
+                                key="Main"
+                                to="/"
                                 className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                             >
                                 <div className="">
@@ -130,7 +92,7 @@ const HeaderComponent = () => {
                                         Главная страница
                                     </p>
                                 </div>
-                            </a>
+                            </Link>
 
                             <Popover className="relative pl-2">
                                 {({ open }) => (
@@ -167,15 +129,13 @@ const HeaderComponent = () => {
                                             <Popover.Panel className="absolute z-50 -ml-4 mt-3 w-screen max-w-sm transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 ">
                                                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
                                                     <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                                        {categories.map(
+                                                        {articleCategories.map(
                                                             (item) => (
-                                                                <a
+                                                                <Link
                                                                     key={
                                                                         item.title
                                                                     }
-                                                                    href={
-                                                                        item.href
-                                                                    }
+                                                                    to={`/category/${item.id}`}
                                                                     className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                                                                 >
                                                                     <div className="ml-4">
@@ -184,13 +144,8 @@ const HeaderComponent = () => {
                                                                                 item.title
                                                                             }
                                                                         </p>
-                                                                        {/* <p className="mt-1 text-sm text-gray-500">
-                                                                            {
-                                                                                item.description
-                                                                            }
-                                                                        </p> */}
                                                                     </div>
-                                                                </a>
+                                                                </Link>
                                                             )
                                                         )}
                                                     </div>
@@ -226,18 +181,23 @@ const HeaderComponent = () => {
                             </a>
                         </Popover.Group>
                         <div className="hidden items-center justify-end lg:flex md:flex-1 lg:w-0">
-                            <a
-                                href="#"
-                                className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                            >
-                                Войти
-                            </a>
-                            <a
-                                href="#"
-                                className="ml-6 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-                            >
-                                Зарегистрироваться
-                            </a>
+                            {store.isAuth ? (
+                                <Button onClick={() => store.logout()}>
+                                    Выйти
+                                </Button>
+                            ) : (
+                                <>
+                                    <Button onClick={() => navigate(`/login`)}>
+                                        Войти
+                                    </Button>
+                                    <p className="ml-6 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                                        {/* Нет акаунта?{" "} */}
+                                        <Link to="/registration" className="">
+                                            Загеристрироваться
+                                        </Link>
+                                    </p>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -279,22 +239,43 @@ const HeaderComponent = () => {
                                 </div>
                                 <div className="mt-6">
                                     <nav className="grid gap-y-8">
-                                        {categories.map((item) => (
-                                            <a
+                                        {articleCategories.map((item) => (
+                                            <Link
                                                 key={item.title}
-                                                href={item.href}
+                                                to={`/category/${item.id}`}
                                                 className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
                                             >
                                                 <span className="ml-3 text-base font-medium text-gray-900">
                                                     {item.title}
                                                 </span>
-                                            </a>
+                                            </Link>
                                         ))}
                                     </nav>
                                 </div>
                             </div>
                             <div className="space-y-6 py-6 px-5">
-                                <LoginButton title="Войти" link="#" />
+                                {store.isAuth ? (
+                                    <Button onClick={() => store.logout()}>
+                                        Выйти
+                                    </Button>
+                                ) : (
+                                    <>
+                                        <Button
+                                            onClick={() => navigate(`/login`)}
+                                        >
+                                            Войти
+                                        </Button>
+                                        <p className="mt-6 text-center text-base font-medium text-gray-500">
+                                            Нет акаунта?{" "}
+                                            <Link
+                                                to="/registration"
+                                                className="text-indigo-600 hover:text-indigo-500"
+                                            >
+                                                Загеристрироваться
+                                            </Link>
+                                        </p>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </Popover.Panel>
@@ -304,4 +285,4 @@ const HeaderComponent = () => {
     );
 };
 
-export default HeaderComponent;
+export default observer(HeaderComponent);

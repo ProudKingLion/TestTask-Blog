@@ -1,46 +1,34 @@
 import React, { useEffect, useState } from "react";
-import HeaderComponent from "../components/HeaderComponent";
-import ArticleListComponent from "../components/ArticleListComponent";
+import { useParams } from "react-router-dom";
 import ArticleService from "../API/ArticleService";
+import ArticleListComponent from "../components/ArticleListComponent";
+import HeaderComponent from "../components/HeaderComponent";
 import { useFetching } from "../hooks/useFetching";
 import { IArticle } from "../models/IArticle";
 import { IPreviewArticle } from "../models/IPreviewArticle";
 
-const Main = () => {
+const CategoryId = () => {
+    const params = useParams();
+    console.log(params);
     const [articles, setArticles] = useState<IPreviewArticle[]>([]);
+    const [categoryTitle, setCategoryTitle] = useState<string>("");
 
     const {
-        fetching: fetchArticles,
+        fetching: fetchArticlesByCategory,
         isLoading,
         error,
-    } = useFetching(async () => {
-        const response = await ArticleService.getAll();
+    } = useFetching(async (id: number) => {
+        const response = await ArticleService.getArticlesByCategory(id);
 
-        setArticles(response.data);
+        setArticles(response.data.articles);
+        setCategoryTitle(response.data.category.title);
+        console.log(articles);
     });
 
     useEffect(() => {
-        fetchArticles();
-    }, []);
-    // const [articles, setArticles] = useState([]);
-
-    // const {
-    //     fetching: fetchArticles,
-    //     isLoading,
-    //     error,
-    // } = useFetching(async () => {
-    //     const response = await ArticleService.getAll();
-
-    //     setArticles(response.data);
-    // });
-
-    // useEffect(() => {
-    //     fetchArticles();
-    // }, []);
-
-    // useEffect(() => {
-    //     console.log(articles);
-    // }, [articles]);
+        console.log(params);
+        fetchArticlesByCategory(params.id);
+    }, [params.id]);
 
     return (
         <>
@@ -51,7 +39,7 @@ const Main = () => {
                 <section className="bg-white dark:bg-gray-900">
                     <div className="container px-6 py-10 mx-auto">
                         <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
-                            Все статьи
+                            {categoryTitle}
                         </h1>
                         <ArticleListComponent
                             articles={articles}
@@ -64,4 +52,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default CategoryId;
