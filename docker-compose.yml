@@ -1,0 +1,48 @@
+version: '3.0'
+
+services:
+  backend:
+    container_name: nest-back
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.production.env
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    ports:
+      - 5000:5000
+      - 9229:9229
+    command: npm run start
+    depends_on:
+      - postgres
+    restart: always
+  postgres:
+    container_name: postgres
+    image: postgres:14
+    env_file:
+      - ./backend/.production.env
+    environment:
+      PG_DATA: /var/lib/postgresql/data
+      # POSTGRES_DB: ${POSTGRES_DB}
+      # POSTGRES_USER: ${POSTGRES_USER}
+      # POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+  # frontend:
+  #   container_name: react-front
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   image: react
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend:/app
+
+volumes:
+  pgdata:
+

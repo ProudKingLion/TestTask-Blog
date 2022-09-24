@@ -12,7 +12,7 @@ async function start() {
     app.enableCors(
         {
             credentials: true,
-            origin: ['http://localhost:3000', 'http://localhost:7100'],
+            origin: ['http://localhost:3000', 'http://localhost:7100', 'http://localhost:5000'],
         }
     );
 
