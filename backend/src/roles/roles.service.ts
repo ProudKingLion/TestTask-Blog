@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { roles } from 'src/const/roles-const';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { Role } from './roles.model';
 
@@ -16,7 +17,25 @@ export class RolesService {
     }
 
     async getRoleByValue(value: string) {
-        const role = await this.roleRepository.findOne({ where: { value } });
+        let role = await this.roleRepository.findOne({ where: { value } });
+        // console.log("dsfsf")
+        // if (!role) {
+        //     await this.makeAllRoles()
+        //     role = await this.roleRepository.findOne({ where: { value } });
+        // }
+
         return role;
+
+    }
+
+    async makeAllRoles() {
+        for (let role in roles) {
+            const roleB = await this.roleRepository.findOne({ where: { value: role } })
+            console.log(roleB)
+            if (!roleB) {
+                const roleD: CreateRoleDto = { value: role };
+                await this.roleRepository.create(roleD);
+            }
+        }
     }
 }

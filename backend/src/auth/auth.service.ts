@@ -33,6 +33,19 @@ export class AuthService {
         return { token: token, user: user };
     }
 
+    async registrateAdmin() {
+        const candidate = await this.userService.getUserByLogin("admin");
+        if (candidate) {
+            throw new HttpException('Пользователь с таким login существует', HttpStatus.BAD_REQUEST)
+        }
+        const hashPassword = await bcrypt.hash("rootpassword", 5);
+        const user = await this.userService.createUser({ login: "admin", name: "admin", password: hashPassword });
+        const token = await this.generateToken(user);
+
+        return { token: token, user: user };
+    }
+
+
     async refresh(userCheckDto: AuthCheckDto) {
         try {
             const user = await this.jwtService.verify(userCheckDto.token)

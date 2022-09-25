@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { roles } from 'src/const/roles-const';
 import { ArticleCategory } from './article-category.model';
 import { ArticleCategoryService } from './article-category.service';
 import { ArticleCategoryDto } from './dto/create-acticle-category.dto';
@@ -13,7 +14,7 @@ export class ArticleCategoryController {
 
     @ApiOperation({ summary: 'Создание категории статьи' })
     @ApiResponse({ status: 200, type: ArticleCategory })
-    @Roles("ADMIN")
+    @Roles(roles.ADMIN)
     @UseGuards(RolesGuard)
     // @UsePipes(ValidationPipe)
     @Post()

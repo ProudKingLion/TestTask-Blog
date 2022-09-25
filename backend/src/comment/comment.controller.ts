@@ -5,6 +5,7 @@ import { CreateCommentDto } from './dto/create-comment.dto';
 import { Comment } from './comment.model';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { roles } from 'src/const/roles-const';
 
 
 @ApiTags('Комментарии')
@@ -14,7 +15,7 @@ export class CommentController {
 
     @ApiOperation({ summary: 'Создание комментария' })
     @ApiResponse({ status: 200, type: Comment })
-    @Roles("USER")
+    @Roles(roles.USER)
     @UseGuards(RolesGuard)
     // @UsePipes(ValidationPipe)
     @Post()

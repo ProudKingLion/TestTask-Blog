@@ -2,7 +2,9 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { AuthResponse } from "../models/response/AuthResponse";
 import { IUser } from "../models/IUser";
 
-export const API_URL = `http://localhost:7100/`
+// export const API_URL = `http://127.1.1.0:7100/`
+export const API_URL = `http://5.100.99.105:7100/`
+
 
 const $api = axios.create({
     withCredentials: true,

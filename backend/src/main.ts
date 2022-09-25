@@ -12,7 +12,20 @@ async function start() {
     app.enableCors(
         {
             credentials: true,
-            origin: ['http://localhost:3000', 'http://localhost:7100', 'http://localhost:5000', 'postgres:5000'],
+            origin: [
+                'http://localhost:3000',
+                'http://localhost:7100',
+                'http://localhost:5000',
+                'http://backend:7100',
+                'http://frontend:3000',
+                'postgres:5000',
+                'postgres:7100',
+                '0.0.0.0:7100',
+                'http://127.1.1.0:7100',
+                'http://127.1.1.0:3000',
+                'http://5.100.99.105:7100',
+                'http://5.100.99.105:3000',
+            ],
         }
     );
 

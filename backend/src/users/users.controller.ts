@@ -8,6 +8,7 @@ import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from './../auth/roles.guard';
 import { AddRoleDto } from './dto/add-role.dto';
 import { ValidationPipe } from './../pipes/validation.pipe';
+import { roles } from 'src/const/roles-const';
 
 @ApiTags('Пользователи')
 @Controller('users')
@@ -22,9 +23,17 @@ export class UsersController {
         return this.usersService.createUser(userDto);
     }
 
+    @ApiOperation({ summary: 'Создать админа !Для теста!' })
+    @ApiResponse({ status: 200, type: User })
+    // @UsePipes(ValidationPipe)
+    @Post('make-admin')
+    createAdmin() {
+        return this.usersService.createAdmin();
+    }
+
     @ApiOperation({ summary: 'Получить всех пользователей' })
     @ApiResponse({ status: 200, type: [User] })
-    @Roles("ADMIN")
+    @Roles(roles.ADMIN)
     @UseGuards(RolesGuard)
     @Get()
     getAll() {
@@ -33,7 +42,7 @@ export class UsersController {
 
     @ApiOperation({ summary: 'Выдать роль' })
     @ApiResponse({ status: 200 })
-    @Roles("ADMIN")
+    @Roles(roles.ADMIN)
     @UseGuards(RolesGuard)
     @Post('/role')
     addRole(@Body() dto: AddRoleDto) {
