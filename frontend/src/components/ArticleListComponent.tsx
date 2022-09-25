@@ -41,17 +41,21 @@ const ArticleListComponent: FC<IArticleListComponent> = ({
         //         </h1>
 
         <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-            {isLoading
-                ? "Loading"
-                : articles.map((arlicle, index) => (
-                      <ArticleBlock
-                          key={index}
-                          id={arlicle.id}
-                          title={arlicle.title}
-                          textPreview={arlicle.previewText}
-                          imgLink={arlicle.image}
-                      />
-                  ))}
+            {isLoading ? (
+                "Loading"
+            ) : articles.length !== 0 ? (
+                articles.map((arlicle, index) => (
+                    <ArticleBlock
+                        key={index}
+                        id={arlicle.id}
+                        title={arlicle.title}
+                        textPreview={arlicle.previewText}
+                        imgLink={arlicle.image}
+                    />
+                ))
+            ) : (
+                <div>В этой категории нет статей.</div>
+            )}
             {/* 
             {articles.map((arlicle, index) => (
                 <ArticleBlock

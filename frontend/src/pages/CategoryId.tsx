@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ArticleService from "../API/ArticleService";
 import ArticleListComponent from "../components/ArticleListComponent";
 import HeaderComponent from "../components/HeaderComponent";
+import MainWrapper from "../components/MainWrapper";
 import { useFetching } from "../hooks/useFetching";
 import { IArticle } from "../models/IArticle";
 import { IPreviewArticle } from "../models/IPreviewArticle";
@@ -31,24 +32,25 @@ const CategoryId = () => {
     }, [params.id]);
 
     return (
-        <>
-            <HeaderComponent />
-            {isLoading ? (
-                "Loading"
-            ) : (
-                <section className="bg-white dark:bg-gray-900">
-                    <div className="container px-6 py-10 mx-auto">
-                        <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
-                            {categoryTitle}
-                        </h1>
-                        <ArticleListComponent
-                            articles={articles}
-                            isLoading={isLoading}
-                        />
-                    </div>
-                </section>
-            )}
-        </>
+        <MainWrapper>
+            <section className="dark:bg-gray-900">
+                <div className="container shadow-lg max-w-7xl min-h-[85vh] px-6 py-10 mx-auto">
+                    {isLoading ? (
+                        "Loading"
+                    ) : (
+                        <>
+                            <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
+                                {categoryTitle}
+                            </h1>
+                            <ArticleListComponent
+                                articles={articles}
+                                isLoading={isLoading}
+                            />
+                        </>
+                    )}
+                </div>
+            </section>
+        </MainWrapper>
     );
 };
 

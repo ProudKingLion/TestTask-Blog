@@ -9,6 +9,7 @@ import { AuthModule } from 'src/auth/auth.module';
 import { CommentModule } from 'src/comment/comment.module';
 import { ArticleCategoryModule } from 'src/article-category/article-category.module';
 import { ArticleCategory } from 'src/article-category/article-category.model';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
     providers: [ArticlesService],
@@ -19,6 +20,12 @@ import { ArticleCategory } from 'src/article-category/article-category.model';
         FilesModule,
         forwardRef(() => CommentModule),
         forwardRef(() => AuthModule),
+        JwtModule.register({
+            secret: process.env.PRIVATE_KEY || 'SECRET',
+            signOptions: {
+                expiresIn: '24h'
+            }
+        }),
     ],
     exports: [
         ArticlesService,

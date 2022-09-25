@@ -16,6 +16,7 @@ import {
     ShieldCheckIcon,
     Squares2X2Icon,
     XMarkIcon,
+    UserIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import LoginButton from "./LoginButton";
@@ -55,9 +56,9 @@ const HeaderComponent = () => {
 
     return (
         <>
-            <Popover className="relative bg-white">
+            <Popover className="relative bg-gray-50">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                    <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 lg:justify-start md:space-x-10">
+                    <div className="flex items-center justify-between border-b-2 border-gray-200 py-6 lg:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">
                             <a href="#">
                                 <span className="sr-only">Your Company</span>
@@ -69,7 +70,7 @@ const HeaderComponent = () => {
                             </a>
                         </div>
                         <div className="-my-2 -mr-2 lg:hidden">
-                            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-gray-50 p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                 <span className="sr-only">Open menu</span>
                                 <Bars3Icon
                                     className="h-6 w-6"
@@ -102,7 +103,7 @@ const HeaderComponent = () => {
                                                 open
                                                     ? "text-gray-900"
                                                     : "text-gray-500",
-                                                "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                "group inline-flex items-center rounded-md bg-gray-50 text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                             )}
                                         >
                                             <span>Категории</span>
@@ -128,7 +129,7 @@ const HeaderComponent = () => {
                                         >
                                             <Popover.Panel className="absolute z-50 -ml-4 mt-3 w-screen max-w-sm transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 ">
                                                 <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
-                                                    <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                                                    <div className="relative grid gap-6 bg-gray-50 px-5 py-6 sm:gap-8 sm:p-8">
                                                         {articleCategories.map(
                                                             (item) => (
                                                                 <Link
@@ -156,9 +157,9 @@ const HeaderComponent = () => {
                                 )}
                             </Popover>
 
-                            <a
+                            <Link
                                 key={"Contacts"}
-                                href={"#"}
+                                to="/contacts"
                                 className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                             >
                                 <div className="">
@@ -166,11 +167,11 @@ const HeaderComponent = () => {
                                         Контакты
                                     </p>
                                 </div>
-                            </a>
+                            </Link>
 
-                            <a
+                            <Link
                                 key={"About"}
-                                href={"#"}
+                                to="/about"
                                 className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                             >
                                 <div className="">
@@ -178,21 +179,29 @@ const HeaderComponent = () => {
                                         О блоге
                                     </p>
                                 </div>
-                            </a>
+                            </Link>
                         </Popover.Group>
                         <div className="hidden items-center justify-end lg:flex md:flex-1 lg:w-0">
                             {store.isAuth ? (
-                                <Button onClick={() => store.logout()}>
-                                    Выйти
-                                </Button>
+                                <>
+                                    <div className="flex items-center justify-center px-8 py-2 font-medium text-indigo-600">
+                                        <UserIcon
+                                            className="h-6 w-6 mr-1"
+                                            aria-hidden="true"
+                                        ></UserIcon>
+                                        {store.user.name}
+                                    </div>
+                                    <Button onClick={() => store.logout()}>
+                                        Выйти
+                                    </Button>
+                                </>
                             ) : (
                                 <>
                                     <Button onClick={() => navigate(`/login`)}>
                                         Войти
                                     </Button>
                                     <p className="ml-6 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                                        {/* Нет акаунта?{" "} */}
-                                        <Link to="/registration" className="">
+                                        <Link to="/registration">
                                             Загеристрироваться
                                         </Link>
                                     </p>
@@ -239,25 +248,64 @@ const HeaderComponent = () => {
                                 </div>
                                 <div className="mt-6">
                                     <nav className="grid gap-y-8">
-                                        {articleCategories.map((item) => (
-                                            <Link
-                                                key={item.title}
-                                                to={`/category/${item.id}`}
-                                                className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-                                            >
-                                                <span className="ml-3 text-base font-medium text-gray-900">
-                                                    {item.title}
-                                                </span>
-                                            </Link>
-                                        ))}
+                                        <Link
+                                            key={"Главная страница"}
+                                            to={`/`}
+                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                                        >
+                                            <span className="ml-3 text-base font-medium text-gray-900">
+                                                Главная страница
+                                            </span>
+                                        </Link>
+                                        <Link
+                                            key={"Контакты"}
+                                            to={`/contacts`}
+                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                                        >
+                                            <span className="ml-3 text-base font-medium text-gray-900">
+                                                Контакты
+                                            </span>
+                                        </Link>
+                                        <Link
+                                            key={"О блоге"}
+                                            to={`/about`}
+                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                                        >
+                                            <span className="ml-3 text-base font-medium text-gray-900">
+                                                О блоге
+                                            </span>
+                                        </Link>
                                     </nav>
                                 </div>
                             </div>
                             <div className="space-y-6 py-6 px-5">
+                                <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+                                    {articleCategories.map((item) => (
+                                        <Link
+                                            key={item.title}
+                                            to={`/category/${item.id}`}
+                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                                        >
+                                            <span className="ml-3 text-base font-medium text-gray-900">
+                                                {item.title}
+                                            </span>
+                                        </Link>
+                                    ))}
+                                </div>
+
                                 {store.isAuth ? (
-                                    <Button onClick={() => store.logout()}>
-                                        Выйти
-                                    </Button>
+                                    <>
+                                        <div className="flex items-center justify-center px-8 py-2 font-medium text-indigo-600">
+                                            <UserIcon
+                                                className="h-6 w-6 mr-1"
+                                                aria-hidden="true"
+                                            ></UserIcon>
+                                            {store.user.name}
+                                        </div>
+                                        <Button onClick={() => store.logout()}>
+                                            Выйти
+                                        </Button>
+                                    </>
                                 ) : (
                                     <>
                                         <Button

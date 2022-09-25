@@ -10,4 +10,6 @@ COPY . .
 
 COPY ./dist ./dist
 
+EXPOSE 7100
+
 CMD ["npm", "run", "start:dev"]

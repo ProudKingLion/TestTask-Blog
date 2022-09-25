@@ -51,5 +51,6 @@
         "postcss": "^8.4.16",
         "tailwindcss": "^3.1.8"
     },
-    "proxy": "http://localhost:7100"
+    "proxy": "http://localhost:7100",
+    "secure": false
 }

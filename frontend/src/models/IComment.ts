@@ -1,6 +1,7 @@
 export interface IComment {
-    date: string;
+    createdAt: string;
     content: string;
-    author: string;
-    article: string;
+    author: {
+        name: string;
+    };
 }

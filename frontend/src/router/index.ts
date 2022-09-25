@@ -4,6 +4,8 @@ import CategoryId from "../pages/CategoryId";
 import ArticleId from "../pages/ArticleId";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
+import About from "../pages/About";
+import Contacts from "../pages/Contacts";
 
 interface Irotes {
     path: string,
@@ -14,7 +16,8 @@ export const privateRoutes: Irotes[] = [
     { path: '/', component: Main },
     { path: '/category/:id', component: CategoryId },
     { path: '/article/:id', component: ArticleId },
-
+    { path: '/about', component: About },
+    { path: '/contacts', component: Contacts },
 ]
 
 export const publicRoutes: Irotes[] = [
@@ -23,4 +26,6 @@ export const publicRoutes: Irotes[] = [
     { path: '/registration', component: Registration },
     { path: '/category/:id', component: CategoryId },
     { path: '/article/:id', component: ArticleId },
+    { path: '/about', component: About },
+    { path: '/contacts', component: Contacts },
 ] 

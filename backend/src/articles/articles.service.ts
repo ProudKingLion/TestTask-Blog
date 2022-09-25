@@ -7,6 +7,7 @@ import { ArticleCategory } from './../article-category/article-category.model';
 import { ArticleCategoryService } from './../article-category/article-category.service';
 import { User } from 'src/users/users.model';
 // import { Article } from './../article/article.model';
+import { Comment } from './../comment/comment.model';
 
 @Injectable()
 export class ArticlesService {
@@ -39,14 +40,23 @@ export class ArticlesService {
 
     async getArticleByPk(id: number) {
         const category = await this.articleRepository.findByPk(id, {
-            include: [{
-                // all: true,
-                model: User,
-                attributes: ['name', 'login'],
-            },
-            {
-                model: ArticleCategory
-            }
+            include: [
+                {
+                    model: User,
+                    attributes: ['name', 'login'],
+                },
+                {
+                    model: ArticleCategory,
+                },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            attributes: ['name'],
+                        }
+                    ]
+                }
             ]
         })
 

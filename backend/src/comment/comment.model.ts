@@ -31,7 +31,8 @@ export class Comment extends Model<Comment, CommentCreationAttrs> {
 
     @ApiProperty({
         example: "Статья про скорость языков",
-        description: "Статья"
+        description: "Статья",
+        type: () => Article
     })
     @BelongsTo(() => Article)
     article: Article;
