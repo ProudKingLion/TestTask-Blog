@@ -28,8 +28,6 @@ export class CommentsService {
             }
 
             const user: User = this.jwtService.verify(token);
-            // console.log(authorization)
-            // console.log(user);
 
             if (user.id !== dto.authorId) throw new UnauthorizedException({ message: 'Неверный пользователь' });
 
@@ -39,11 +37,6 @@ export class CommentsService {
             throw new UnauthorizedException({ message: 'Пользователь не авторизован' })
         }
     }
-
-    // async getAllUsers() {
-    //     const users = await this.userRepository.findAll({ include: { all: true } });
-    //     return users;
-    // }
 
     async getCommentsByPost(id: number, limit: number = 10, page: number = 1): Promise<any> {
         const commentsAndCount = await this.commentRepository.findAndCountAll({
@@ -62,15 +55,4 @@ export class CommentsService {
 
     }
 
-    // async addRole(dto: AddRoleDto) {
-    //     const user = await this.userRepository.findByPk(dto.userId);
-    //     const role = await this.roleService.getRoleByValue(dto.value);
-
-    //     if (role && user) {
-    //         await user.$add('role', role.id);
-    //         return dto;
-    //     }
-
-    //     throw new HttpException('Пользователь или роль не найдены', HttpStatus.NOT_FOUND)
-    // }
 }

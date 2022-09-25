@@ -1,7 +1,6 @@
 export interface IArticle {
     id: number;
     title: string;
-    // previewText: string;
     content: string;
     image: string;
     author: {

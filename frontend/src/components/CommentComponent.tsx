@@ -12,21 +12,10 @@ const CommentComponent: FC<IComment> = ({ createdAt, content, author }) => {
             >
                 <div className="relative grid grid-cols-1 gap-4 mb-2 rounded-lg bg-gray-50 py-3">
                     <div className="relative flex">
-                        {/* <img
-                            src="https://icons.iconarchive.com/icons/diversity-avatars/avatars/256/charlie-chaplin-icon.png"
-                            className="relative rounded-lg -top-8 -mb-4 bg-white border h-20 w-20"
-                            alt=""
-                            loading="lazy"
-                        /> */}
                         <div className="flex flex-col w-full">
-                            {/* <div className="flex flex-row justify-between"> */}
                             <p className="relative text-xl whitespace-nowrap truncate overflow-hidden">
                                 {author.name}
                             </p>
-                            {/* <a className="text-gray-500 text-xl" href="#">
-                                    <i className="fa-solid fa-trash"></i>
-                                </a> */}
-                            {/* </div> */}
                             <p className="text-gray-400 text-sm mb-2">
                                 {date?.length == 4 &&
                                     `${date[2]} ${date[1]} ${date[3]}`}

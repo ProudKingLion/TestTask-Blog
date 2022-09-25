@@ -4,17 +4,18 @@ import { Context } from "..";
 import CommentService from "../services/CommentService";
 
 interface ICommentFormComponent {
+    commentText: string;
     setCommentText: (text: string) => void;
     handleSubmitComment: (e: any) => void;
 }
 
 const CommentFormComponent: FC<ICommentFormComponent> = ({
+    commentText,
     setCommentText,
     handleSubmitComment,
 }) => {
     const { store } = useContext(Context);
     const handleChange = (event: any) => {
-        // console.log(event.target.value);
         setCommentText(event.target.value);
     };
 
@@ -22,13 +23,8 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
         event.preventDefault();
     };
 
-    // const handleSubmitComment = () => {
-    //     CommentService.sendComment(commentText, articleId, authorId);
-    // };
-
     return (
         <>
-            {/* <div className="flex mx-auto items-center justify-center shadow-lg mt-56 mx-8 mb-4 max-w-lg"> */}
             <form
                 onSubmit={(e) => handleSubmit(e)}
                 className="w-full bg-gray-50 px-4 pt-2 border-b-2 border-gray-200"
@@ -46,6 +42,7 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
                                     name="body"
                                     placeholder="Написать комментарий..."
                                     onChange={handleChange}
+                                    value={commentText}
                                     required
                                 ></textarea>
                             </div>
@@ -75,7 +72,6 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
                     )}
                 </div>
             </form>
-            {/* </div> */}
         </>
     );
 };

@@ -23,14 +23,6 @@ export class UsersController {
         return this.usersService.createUser(userDto);
     }
 
-    @ApiOperation({ summary: 'Создать админа !Для теста!' })
-    @ApiResponse({ status: 200, type: User })
-    // @UsePipes(ValidationPipe)
-    @Post('make-admin')
-    createAdmin() {
-        return this.usersService.createAdmin();
-    }
-
     @ApiOperation({ summary: 'Получить всех пользователей' })
     @ApiResponse({ status: 200, type: [User] })
     @Roles(roles.ADMIN)

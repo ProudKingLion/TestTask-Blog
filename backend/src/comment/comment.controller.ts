@@ -15,9 +15,8 @@ export class CommentController {
 
     @ApiOperation({ summary: 'Создание комментария' })
     @ApiResponse({ status: 200, type: Comment })
-    @Roles(roles.USER)
+    @Roles(roles.USER, roles.ADMIN)
     @UseGuards(RolesGuard)
-    // @UsePipes(ValidationPipe)
     @Post()
     create(@Body() createCommentDto: CreateCommentDto,
         @Headers('authorization') authorization) {

@@ -5,7 +5,8 @@ import { User } from 'src/users/users.model';
 export class CreateArticleDto {
     @ApiProperty({ example: "Сравнение скорости языков программирования", description: "Заголовок статьи" })
     @IsString({ message: 'Должно быть строкой' })
-    @Length(1, 30, { message: "Не меньше 1 и не больше 30" })
+    @Length(1, 60, { message: "Не меньше 1 и не больше 60" })
+    @IsNotEmpty()
     readonly title: string;
 
     @ApiProperty({
@@ -13,7 +14,8 @@ export class CreateArticleDto {
         description: "Содержание статьи"
     })
     @IsString({ message: 'Должно быть строкой' })
-    @Length(1, 1000, { message: "Не меньше 1 и не больше 1000" })
+    @Length(1, 3000, { message: "Не меньше 1 и не больше 3000" })
+    @IsNotEmpty()
     readonly content: string;
 
     @ApiProperty({
@@ -21,7 +23,8 @@ export class CreateArticleDto {
         description: "Превью текста в статье"
     })
     @IsString({ message: 'Должно быть строкой' })
-    @Length(1, 60, { message: "Не меньше 1 и не больше 60" })
+    @Length(1, 300, { message: "Не меньше 1 и не больше 300" })
+    @IsNotEmpty()
     readonly previewText: string;
 
     @ApiProperty({

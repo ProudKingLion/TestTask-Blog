@@ -18,8 +18,6 @@ async function start() {
                 'http://localhost:5000',
                 'http://backend:7100',
                 'http://frontend:3000',
-                'postgres:5000',
-                'postgres:7100',
                 '0.0.0.0:7100',
                 'http://127.1.1.0:7100',
                 'http://127.1.1.0:3000',

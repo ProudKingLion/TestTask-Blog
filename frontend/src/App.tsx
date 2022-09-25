@@ -10,31 +10,12 @@ function App() {
     const { store } = useContext(Context);
 
     useEffect(() => {
-        // const token = localStorage.getItem("token");
-        // console.log("TOKEN");
-        // console.log(token);
         if (localStorage.getItem("token")) {
-            // console.log("TOKEN???");
-            // console.log(store.user.login);
             store.refresh();
         }
     }, []);
-    // const [isAuth, setIsAuth] = useState(false);
 
-    // if (localStorage.getItem("auth")) {
-    //     setIsAuth(true);
-    // }
-
-    return (
-        // <AuthContext.Provider
-        //     value={{
-        //         isAuth,
-        //         setIsAuth,
-        //     }}
-        // >
-        <AppRouter />
-        // </AuthContext.Provider>
-    );
+    return <AppRouter />;
 }
 
 export default observer(App);

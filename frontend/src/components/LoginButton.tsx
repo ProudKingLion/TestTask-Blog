@@ -10,7 +10,6 @@ interface ILoginButton {
 const LoginButton: FC<ILoginButton> = ({ title, link }) => {
     return (
         <div>
-            {/* <Button link={link}>{title}</Button> */}
             <p className="mt-6 text-center text-base font-medium text-gray-500">
                 Нет акаунта?{" "}
                 <Link

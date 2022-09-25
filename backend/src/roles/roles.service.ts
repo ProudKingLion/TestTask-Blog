@@ -18,20 +18,14 @@ export class RolesService {
 
     async getRoleByValue(value: string) {
         let role = await this.roleRepository.findOne({ where: { value } });
-        // console.log("dsfsf")
-        // if (!role) {
-        //     await this.makeAllRoles()
-        //     role = await this.roleRepository.findOne({ where: { value } });
-        // }
 
         return role;
-
     }
 
     async makeAllRoles() {
         for (let role in roles) {
             const roleB = await this.roleRepository.findOne({ where: { value: role } })
-            console.log(roleB)
+            // console.log(roleB)
             if (!roleB) {
                 const roleD: CreateRoleDto = { value: role };
                 await this.roleRepository.create(roleD);

@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ArticleService from "../API/ArticleService";
 import ArticleListComponent from "../components/ArticleListComponent";
-import HeaderComponent from "../components/HeaderComponent";
 import MainWrapper from "../components/MainWrapper";
 import { useFetching } from "../hooks/useFetching";
-import { IArticle } from "../models/IArticle";
 import { IPreviewArticle } from "../models/IPreviewArticle";
 
 const CategoryId = () => {

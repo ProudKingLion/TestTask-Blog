@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import HeaderComponent from "../components/HeaderComponent";
 import ArticleListComponent from "../components/ArticleListComponent";
 import ArticleService from "../API/ArticleService";
 import { useFetching } from "../hooks/useFetching";
-import { IArticle } from "../models/IArticle";
 import { IPreviewArticle } from "../models/IPreviewArticle";
 import MainWrapper from "../components/MainWrapper";
 

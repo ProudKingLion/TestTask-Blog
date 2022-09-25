@@ -39,7 +39,6 @@ export default class Store {
 
     async login(login: string, password: string) {
         try {
-            // console.log(login, password)
             const response = await AuthService.login(login, password);
             console.log(response.data)
             localStorage.setItem("token", response.data.token);
@@ -51,18 +50,6 @@ export default class Store {
         }
     }
 
-    // async checkAuth(login: string, token: string) {
-    //     try {
-    //         // console.log(login, password)
-    //         const response = await AuthService.login(login, password);
-    //         console.log(response)
-    //         localStorage.setItem('token', response.data.token);
-    //         this.setAuth(true);
-    //         this.setUser(response.data.user);
-    //     } catch (e: any) {
-    //         console.log(e.response?.data?.message);
-    //     }
-    // }
 
     async registration(name: string, login: string, password: string) {
         try {
@@ -78,7 +65,6 @@ export default class Store {
 
     async logout() {
         try {
-            // const response = await AuthService.logout();
             localStorage.removeItem('token');
             this.setAuth(false);
             this.setUser({} as IUser);
@@ -90,10 +76,6 @@ export default class Store {
     async refresh() {
         this.setLoading(true);
         try {
-            // const login = await this.getLogin();
-            // debugger
-            // console.log(login)
-            // console.log("In checkAuth")
             const token = localStorage.getItem('token');
             if (!token) {
                 this.setAuth(false);
@@ -106,7 +88,6 @@ export default class Store {
             this.setAuth(true);
             this.setUser(response.data.user);
 
-            // return true;
         } catch (e: any) {
             console.log(e.response?.data?.message);
         } finally {

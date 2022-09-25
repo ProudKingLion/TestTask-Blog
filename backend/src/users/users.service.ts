@@ -18,9 +18,8 @@ export class UsersService {
         return user;
     }
 
-    async createAdmin() {
-        const userB: CreateUserDto = { name: "admin", login: "admin", password: "rootpassword" }
-        const user = await this.userRepository.create(userB);
+    async createAdmin(dto: CreateUserDto) {
+        const user = await this.userRepository.create(dto);
         const role = await this.roleService.getRoleByValue(roles.ADMIN);
         await user.$set('roles', [role.id]);
         user.roles = [role];
@@ -34,7 +33,7 @@ export class UsersService {
 
     async getUserByLogin(login: string) {
         const user = await this.userRepository.findOne({ where: { login }, include: { all: true } });
-        console.log(user)
+
         return user;
     }
 

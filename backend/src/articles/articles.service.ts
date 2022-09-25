@@ -27,11 +27,6 @@ export class ArticlesService {
         return users;
     }
 
-    // async getArticleById(id: number) {
-    //     const article = await this.articleRepository.findByPk(id);
-    //     return article;
-    // }
-
     async getArticlesByCategory(id: number) {
         const articles = await this.articleRepository.findAll({ where: { categoryId: id } })
 
@@ -79,5 +74,4 @@ export class ArticlesService {
         return comments;
     }
 
-    // async getArticleByValue("")
 }   

@@ -68,6 +68,8 @@ const ArticleId = () => {
             alert("Вы не вошли!");
             return;
         }
+        if (commentText.length === 0) return;
+        setCommentText("");
 
         CommentService.sendComment(
             commentText,
@@ -90,12 +92,8 @@ const ArticleId = () => {
 
     return (
         <MainWrapper>
-            {/* <div className="relative flex">
-                <div className="max-w-screen-xl mx-auto"> */}
             <div className="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative">
-                {/* <div className=" flex flex-col items-center justify-center shadow-lg mb-4 max-w-7xl px-6"> */}
                 <div className="shadow-lg mb-4 mt-10 px-6 pb-6">
-                    {/* <div className="mt-10 "> */}
                     <div
                         className="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative"
                         style={{ height: "24em" }}
@@ -144,18 +142,11 @@ const ArticleId = () => {
                     <div className="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
                         {article?.content}
                     </div>
-                    {/* </div> */}
                 </div>
-
-                {/* <div className="max-w-screen-md mx-auto"> */}
-                {/* <div className="flex mx-auto items-center justify-center shadow-lg mt-56 mx-8 mb-4 max-w-lg"> */}
-                {/* <CommentFormComponent />
-                            <CommentComponent /> */}
-                {/* </div> */}
-                {/* </div> */}
 
                 <div className=" flex flex-col items-center justify-center shadow-lg mb-4 max-w-7xl px-6">
                     <CommentFormComponent
+                        commentText={commentText}
                         setCommentText={setCommentText}
                         handleSubmitComment={handleSubmitComment}
                     />
@@ -189,13 +180,9 @@ const ArticleId = () => {
                         Посмотреть ещё 5
                     </Button>
                 )}
-                {/* </div>
-            </div> */}
             </div>
         </MainWrapper>
     );
 };
 
 export default ArticleId;
-
-// inline-flex flex-col items-center

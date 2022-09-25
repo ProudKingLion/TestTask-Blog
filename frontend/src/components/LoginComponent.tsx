@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { Context } from "..";
 import { IInputsLogin } from "../models/IInputs";
 import AuthInput from "./AuthInput";
-// import { AuthContext } from "../context";
-import LoginButton from "./LoginButton";
 import Button from "./UI/Button";
 
 const LoginComponent = () => {

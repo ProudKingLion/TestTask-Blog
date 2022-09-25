@@ -24,7 +24,6 @@ export class RolesController {
     @ApiResponse({ status: 200, type: Role })
     @Get('/get/:value')
     getByValue(@Param('value') value: string) {
-        // console.log("SDFDSF")
         return this.roleService.getRoleByValue(value);
     }
 }

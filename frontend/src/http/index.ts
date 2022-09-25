@@ -2,8 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { AuthResponse } from "../models/response/AuthResponse";
 import { IUser } from "../models/IUser";
 
-// export const API_URL = `http://127.1.1.0:7100/`
-export const API_URL = `http://5.100.99.105:7100/`
+export const API_URL = `http://127.1.1.0:7100/`
+// export const API_URL = `http://5.100.99.105:7100/`
 
 
 const $api = axios.create({
@@ -23,10 +23,7 @@ $api.interceptors.response.use((config) => {
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true;
         try {
-            // localStorage.removeItem('token');
-            // const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, { withCredentials: true })
-            // localStorage.setItem('token', response.data.token);
-            // return $api.request(originalRequest);
+            localStorage.removeItem('token');
         } catch (e) {
             console.log('НЕ АВТОРИЗОВАН')
         }

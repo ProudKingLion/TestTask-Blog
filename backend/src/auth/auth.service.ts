@@ -16,7 +16,7 @@ export class AuthService {
     async login(userDto: LoinUserDto) {
         const user = await this.validateUserByPassword(userDto);
         const token = await this.generateToken(user);
-        // console.log({ token, user })
+
         return { token: token, user: user };
     }
 
@@ -39,7 +39,7 @@ export class AuthService {
             throw new HttpException('Пользователь с таким login существует', HttpStatus.BAD_REQUEST)
         }
         const hashPassword = await bcrypt.hash("rootpassword", 5);
-        const user = await this.userService.createUser({ login: "admin", name: "admin", password: hashPassword });
+        const user = await this.userService.createAdmin({ login: "admin", name: "admin", password: hashPassword });
         const token = await this.generateToken(user);
 
         return { token: token, user: user };
@@ -49,19 +49,8 @@ export class AuthService {
     async refresh(userCheckDto: AuthCheckDto) {
         try {
             const user = await this.jwtService.verify(userCheckDto.token)
-            // console.log("DECODED USER");
-            console.log(user)
-            // console.log(decodedUser instanceof Object)
-            // console.log("DECODED USER");
-            // if (decodedUser instanceof Object) console.log('login' in decodedUser)
-            // if (!decodedUser || !(decodedUser instanceof Object && 'login' in decodedUser)) throw new HttpException('Неправильный токен', HttpStatus.BAD_REQUEST)
-            // const login = JSON.parse(decodedUser).login
-            console.log("GO");
-
-            // const user = await this.validateUserByToken(decodedUser.login, userCheckDto.token);
-            // console.log(await this.jwtService.decode(userCheckDto.token))
             const token = await this.generateToken(user);
-            // console.log({ token, user })
+
             return { token, user: user };
         } catch (e) {
             throw new UnauthorizedException({ message: 'Пользователь не авторизован' })
@@ -90,15 +79,10 @@ export class AuthService {
     }
 
     private async validateUserByToken(login: string, token: string) {
-        // console.log("EHAT")
         const user = await this.userService.getUserByLogin(login);
-        // console.log(user)
         if (!user) throw new UnauthorizedException({ message: 'Некорректный login или токен' });
-        // console.log("SAD")
-        // console.log(this.jwtService.verify(token));
-        // console.log("fsdf")
+
         const passwordEquals = await bcrypt.compare(token, user.password);
-        console.log(passwordEquals)
         if (user && passwordEquals) {
             return user;
         }

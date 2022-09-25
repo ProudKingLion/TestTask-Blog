@@ -15,7 +15,6 @@ export class CreateCommentDto {
         example: "1",
         description: "Ключ статьи"
     })
-    // @IsNumber({}, { message: 'Должно быть цифрой' })
     @IsNotEmpty()
     readonly articleId: number;
 
@@ -23,7 +22,6 @@ export class CreateCommentDto {
         example: "1",
         description: "Ключ автора комментария(пользователя)"
     })
-    // @IsNumber({}, { message: 'Должно быть цифрой' })
     @IsNotEmpty()
     readonly authorId: number;
 }
