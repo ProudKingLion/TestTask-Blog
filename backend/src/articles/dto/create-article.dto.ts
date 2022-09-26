@@ -14,7 +14,7 @@ export class CreateArticleDto {
         description: "Содержание статьи"
     })
     @IsString({ message: 'Должно быть строкой' })
-    @Length(1, 3000, { message: "Не меньше 1 и не больше 3000" })
+    @Length(1, 3000, { message: "Не меньше 1 и не больше 5000" })
     @IsNotEmpty()
     readonly content: string;
 
@@ -23,7 +23,7 @@ export class CreateArticleDto {
         description: "Превью текста в статье"
     })
     @IsString({ message: 'Должно быть строкой' })
-    @Length(1, 300, { message: "Не меньше 1 и не больше 300" })
+    @Length(1, 300, { message: "Не меньше 1 и не больше 200" })
     @IsNotEmpty()
     readonly previewText: string;
 
@@ -31,7 +31,6 @@ export class CreateArticleDto {
         example: "1",
         description: "Ключ пользователя"
     })
-    // @IsNumber({}, { message: 'Должно быть цифрой' })
     @IsNotEmpty()
     readonly userId: number;
 
@@ -39,9 +38,6 @@ export class CreateArticleDto {
         example: "1",
         description: "Ключ категории"
     })
-    // @NotNull({}, {'Не должно быть пустым'})
-    // @IsNumber({}, { message: 'Должно быть цифрой' })
     @IsNotEmpty()
-    // @IsString({ message: 'Должно быть строкой' })
     readonly categoryId: number;
 }

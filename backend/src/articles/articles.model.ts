@@ -27,14 +27,14 @@ export class Article extends Model<Article, ArticleCreationAttrs> {
         example: "В этой статье мы определим насколько быстрым является тот или иной язык. ...",
         description: "Содержание статьи"
     })
-    @Column({ type: DataType.STRING, unique: false, allowNull: false })
+    @Column({ type: DataType.STRING(5000), unique: false, allowNull: false })
     content: string;
 
     @ApiProperty({
         example: "В этой статье мы определим...",
         description: "Превью текста в статье"
     })
-    @Column({ type: DataType.STRING, unique: false, allowNull: false })
+    @Column({ type: DataType.STRING(200), unique: false, allowNull: false })
     previewText: string;
 
     @ApiProperty({
