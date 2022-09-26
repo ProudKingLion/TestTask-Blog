@@ -43,7 +43,6 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
                                     placeholder="Написать комментарий..."
                                     onChange={handleChange}
                                     value={commentText}
-                                    required
                                 ></textarea>
                             </div>
                             <div className="w-full md:w-full flex items-start ">
@@ -51,9 +50,14 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
                                 <div className="-mr-1">
                                     <input
                                         type="submit"
-                                        className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100"
-                                        value="Post Comment"
+                                        className={`font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 ${
+                                            commentText.length === 0
+                                                ? "bg-gray-50 text-gray-500 hover:cursor-not-allowed"
+                                                : "bg-white hover:bg-gray-100 text-gray-700"
+                                        }`}
+                                        value="Отправить"
                                         onClick={handleSubmitComment}
+                                        disabled={commentText.length === 0}
                                     />
                                 </div>
                             </div>

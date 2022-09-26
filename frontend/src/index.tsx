@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import Store from "./store/store";
+import ScrollToTop from "./components/ScrollToTop";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -28,6 +29,7 @@ root.render(
         }}
     >
         <BrowserRouter>
+            <ScrollToTop />
             <App />
         </BrowserRouter>
     </Context.Provider>

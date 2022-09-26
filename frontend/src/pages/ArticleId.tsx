@@ -140,7 +140,9 @@ const ArticleId = () => {
                     </div>
 
                     <div className="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
-                        {article?.content}
+                        {article?.content.split("\n").map((str, i) => (
+                            <p key={`p_${i}`}>{str}</p>
+                        ))}
                     </div>
                 </div>
 

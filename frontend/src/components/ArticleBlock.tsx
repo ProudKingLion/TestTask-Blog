@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface IPost {
     id: number;
@@ -9,8 +9,6 @@ interface IPost {
 }
 
 const ArticleBlock: FC<IPost> = ({ id, title, textPreview, imgLink }) => {
-    const navigate = useNavigate();
-
     return (
         <div className="xl:flex">
             <img
@@ -20,12 +18,12 @@ const ArticleBlock: FC<IPost> = ({ id, title, textPreview, imgLink }) => {
             />
 
             <div className="flex flex-col justify-start py-6 xl:mx-6">
-                <a
-                    onClick={() => navigate(`/article/${id}`)}
+                <Link
+                    to={`/article/${id}`}
                     className="text-xl pb-3  font-semibold text-gray-800 hover:underline dark:text-white "
                 >
                     {title}
-                </a>
+                </Link>
 
                 <span className="text-sm text-gray-500 dark:text-gray-300">
                     {textPreview}
