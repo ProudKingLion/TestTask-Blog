@@ -27,10 +27,10 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
         <>
             <form
                 onSubmit={(e) => handleSubmit(e)}
-                className="w-full bg-gray-50 px-4 pt-2 border-b-2 border-gray-200"
+                className="w-full bg-gray-50 dark:bg-gray-800 px-4 pt-2 border-b-2 border-gray-200 dark:border-gray-500"
             >
                 <div className="flex flex-wrap -mx-3 mb-3">
-                    <h2 className=" pt-3 pb-2 text-gray-800 text-lg">
+                    <h2 className=" pt-3 pb-2 text-gray-800 dark:text-gray-200 text-lg">
                         Комментарии
                     </h2>
 
@@ -38,7 +38,7 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
                         <>
                             <div className="w-full md:w-full pb-3 m b-2 mt-2">
                                 <textarea
-                                    className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                                    className="bg-gray-100 dark:bg-gray-900/20 rounded border border-gray-400 dark:border-gray-600 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white dark:focus:bg-gray-900/60 dark:text-gray-200"
                                     name="body"
                                     placeholder="Написать комментарий..."
                                     onChange={handleChange}
@@ -50,10 +50,10 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
                                 <div className="-mr-1">
                                     <input
                                         type="submit"
-                                        className={`font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 ${
+                                        className={`font-medium py-1 px-4 border border-gray-400 dark:border-gray-500 rounded-lg tracking-wide mr-1 ${
                                             commentText.length === 0
-                                                ? "bg-gray-50 text-gray-500 hover:cursor-not-allowed"
-                                                : "bg-white hover:bg-gray-100 text-gray-700"
+                                                ? "bg-gray-50 dark:bg-gray-800 text-gray-500 hover:cursor-not-allowed"
+                                                : "bg-white dark:bg-gray-800 hover:bg-gray-100 text-gray-700"
                                         }`}
                                         value="Отправить"
                                         onClick={handleSubmitComment}
@@ -67,7 +67,7 @@ const CommentFormComponent: FC<ICommentFormComponent> = ({
                             Только пользователи могут оставлять комментарии.{" "}
                             <Link
                                 to="/login"
-                                className="text-blue-400 font-medium hover:text-gray-900"
+                                className="text-blue-400 font-medium hover:text-gray-900 dark:hover:text-blue-200"
                             >
                                 Войдите
                             </Link>

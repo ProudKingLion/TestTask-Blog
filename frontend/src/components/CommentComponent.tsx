@@ -10,10 +10,10 @@ const CommentComponent: FC<IComment> = ({ createdAt, content, author }) => {
                 className="flex justify-center relative"
                 style={{ maxWidth: "fit-content" }}
             >
-                <div className="relative grid grid-cols-1 gap-4 mb-2 rounded-lg bg-gray-50 py-3">
+                <div className="relative grid grid-cols-1 gap-4 mb-2 rounded-lg bg-gray-50 dark:bg-gray-800 py-3">
                     <div className="relative flex">
                         <div className="flex flex-col w-full">
-                            <p className="relative text-xl whitespace-nowrap truncate overflow-hidden">
+                            <p className="relative text-xl whitespace-nowrap truncate overflow-hidden dark:text-gray-200">
                                 {author.name}
                             </p>
                             <p className="text-gray-400 text-sm mb-2">
@@ -22,7 +22,9 @@ const CommentComponent: FC<IComment> = ({ createdAt, content, author }) => {
                             </p>
                         </div>
                     </div>
-                    <p className="-mt-4 text-gray-500">{content}</p>
+                    <p className="-mt-4 text-gray-500 dark:text-gray-300">
+                        {content}
+                    </p>
                     <a className="text-blue-400">Ответить</a>
                 </div>
             </div>

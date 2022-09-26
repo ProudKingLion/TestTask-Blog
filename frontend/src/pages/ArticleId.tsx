@@ -92,8 +92,8 @@ const ArticleId = () => {
 
     return (
         <MainWrapper>
-            <div className="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative">
-                <div className="shadow-lg mb-4 mt-10 px-6 pb-6">
+            <div className="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative dark:bg-gray-800">
+                <div className="shadow-lg dark:shadow-gray-900 mb-4 mt-10 px-6 pb-6">
                     <div
                         className="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative"
                         style={{ height: "24em" }}
@@ -139,14 +139,14 @@ const ArticleId = () => {
                         </div>
                     </div>
 
-                    <div className="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
+                    <div className="px-4 lg:px-0 mt-12 text-gray-700 dark:text-gray-300 max-w-screen-md mx-auto text-lg leading-relaxed">
                         {article?.content.split("\n").map((str, i) => (
                             <p key={`p_${i}`}>{str}</p>
                         ))}
                     </div>
                 </div>
 
-                <div className=" flex flex-col items-center justify-center shadow-lg mb-4 max-w-7xl px-6">
+                <div className=" flex flex-col items-center justify-center shadow-lg dark:shadow-gray-900 mb-4 max-w-7xl px-6">
                     <CommentFormComponent
                         commentText={commentText}
                         setCommentText={setCommentText}
@@ -166,7 +166,7 @@ const ArticleId = () => {
                     </div>
                 </div>
                 {maxComments === 0 ? (
-                    <div className="flex justify-center text-gray-600 font-medium">
+                    <div className="flex justify-center text-gray-600 dark:text-gray-300 font-medium">
                         Комментариев нет
                     </div>
                 ) : (

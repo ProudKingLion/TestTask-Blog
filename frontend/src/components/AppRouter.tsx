@@ -10,7 +10,7 @@ const AppRouter = () => {
     const { store } = useContext(Context);
 
     if (store.isLoading) {
-        return <div>Загрузка...</div>;
+        return <div className="dark:text-gray-100">Загрузка...</div>;
     }
 
     return store.isAuth ? (

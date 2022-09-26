@@ -46,9 +46,9 @@ const HeaderComponent = () => {
 
     return (
         <>
-            <Popover className="relative bg-gray-50">
+            <Popover className="relative bg-gray-50 dark:bg-gray-800">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                    <div className="flex items-center justify-between border-b-2 border-gray-200 py-6 lg:justify-start md:space-x-10">
+                    <div className="flex items-center justify-between border-b-2 dark:border-gray-500 border-gray-200 py-6 lg:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">
                             <Link to="/">
                                 <span className="sr-only">Your Company</span>
@@ -60,7 +60,7 @@ const HeaderComponent = () => {
                             </Link>
                         </div>
                         <div className="-my-2 -mr-2 lg:hidden">
-                            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-gray-50 p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-gray-50 dark:bg-gray-800 p-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                 <span className="sr-only">Open menu</span>
                                 <Bars3Icon
                                     className="h-6 w-6"
@@ -76,10 +76,10 @@ const HeaderComponent = () => {
                             <Link
                                 key="Main"
                                 to="/"
-                                className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                                className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-700"
                             >
                                 <div className="">
-                                    <p className="text-base font-medium text-gray-500 hover:text-gray-900">
+                                    <p className="text-base font-medium text-gray-500 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-100">
                                         Главная страница
                                     </p>
                                 </div>
@@ -91,18 +91,18 @@ const HeaderComponent = () => {
                                         <Popover.Button
                                             className={classNames(
                                                 open
-                                                    ? "text-gray-900"
-                                                    : "text-gray-500",
-                                                "group inline-flex items-center rounded-md bg-gray-50 text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                    ? "text-gray-900 dark:text-gray-200"
+                                                    : "text-gray-500 dark:text-gray-100",
+                                                "group inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 text-base font-medium hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                             )}
                                         >
                                             <span>Категории</span>
                                             <ChevronDownIcon
                                                 className={classNames(
                                                     open
-                                                        ? "text-gray-600"
-                                                        : "text-gray-400",
-                                                    "ml-2 h-5 w-5 group-hover:text-gray-500"
+                                                        ? "text-gray-600 dark:text-gray-500"
+                                                        : "text-gray-400 dark:text-gray-100",
+                                                    "ml-2 h-5 w-5 group-hover:text-gray-500 dark:group-hover:text-gray-100"
                                                 )}
                                                 aria-hidden="true"
                                             />
@@ -118,8 +118,8 @@ const HeaderComponent = () => {
                                             leaveTo="opacity-0 translate-y-1"
                                         >
                                             <Popover.Panel className="absolute z-50 -ml-4 mt-3 w-screen max-w-sm transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 ">
-                                                <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ">
-                                                    <div className="relative grid gap-6 bg-gray-50 px-5 py-6 sm:gap-8 sm:p-8">
+                                                <div className="overflow-hidden rounded-lg shadow-lg dark:shadow-gray-900 ring-1 ring-black ring-opacity-5 ">
+                                                    <div className="relative grid gap-6 bg-gray-50 dark:bg-gray-800  px-5 py-6 sm:gap-8 sm:p-8">
                                                         {articleCategories.map(
                                                             (item) => (
                                                                 <Link
@@ -127,10 +127,10 @@ const HeaderComponent = () => {
                                                                         item.title
                                                                     }
                                                                     to={`/category/${item.id}`}
-                                                                    className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                                                                    className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-800"
                                                                 >
                                                                     <div className="ml-4">
-                                                                        <p className="text-base font-medium text-gray-900">
+                                                                        <p className="text-base font-medium text-gray-900 dark:text-gray-200">
                                                                             {
                                                                                 item.title
                                                                             }
@@ -150,10 +150,10 @@ const HeaderComponent = () => {
                             <Link
                                 key={"Contacts"}
                                 to="/contacts"
-                                className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                                className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-700"
                             >
                                 <div className="">
-                                    <p className="text-base font-medium text-gray-500 hover:text-gray-900">
+                                    <p className="text-base font-medium text-gray-500 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-100">
                                         Контакты
                                     </p>
                                 </div>
@@ -162,10 +162,10 @@ const HeaderComponent = () => {
                             <Link
                                 key={"About"}
                                 to="/about"
-                                className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                                className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-700"
                             >
                                 <div className="">
-                                    <p className="text-base font-medium text-gray-500 hover:text-gray-900">
+                                    <p className="text-base font-medium text-gray-500 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-100">
                                         О блоге
                                     </p>
                                 </div>
@@ -174,7 +174,7 @@ const HeaderComponent = () => {
                         <div className="hidden items-center justify-end lg:flex md:flex-1 lg:w-0">
                             {store.isAuth ? (
                                 <>
-                                    <div className="flex items-center justify-center px-8 py-2 font-medium text-indigo-600">
+                                    <div className="flex items-center justify-center px-8 py-2 font-medium text-indigo-600 dark:text-indigo-400">
                                         <UserIcon
                                             className="h-6 w-6 mr-1"
                                             aria-hidden="true"
@@ -190,7 +190,7 @@ const HeaderComponent = () => {
                                     <Button onClick={() => navigate(`/login`)}>
                                         Войти
                                     </Button>
-                                    <p className="ml-6 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                                    <p className="ml-6 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
                                         <Link to="/registration">
                                             Загеристрироваться
                                         </Link>
@@ -212,9 +212,9 @@ const HeaderComponent = () => {
                 >
                     <Popover.Panel
                         focus
-                        className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden z-50"
+                        className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden z-50 "
                     >
-                        <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                        <div className="divide-y-2 divide-gray-50 rounded-lg bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 dark:shadow-gray-900">
                             <div className="px-5 pt-5 pb-6">
                                 <div className="flex items-center justify-between">
                                     <div>
@@ -225,7 +225,7 @@ const HeaderComponent = () => {
                                         />
                                     </div>
                                     <div className="-mr-2">
-                                        <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                        <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white dark:bg-gray-800 p-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-500 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                             <span className="sr-only">
                                                 Close menu
                                             </span>
@@ -241,27 +241,27 @@ const HeaderComponent = () => {
                                         <Link
                                             key={"Главная страница"}
                                             to={`/`}
-                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50 dark:hover:bg-gray-700 "
                                         >
-                                            <span className="ml-3 text-base font-medium text-gray-900">
+                                            <span className="ml-3 text-base font-medium text-gray-900 dark:text-gray-200">
                                                 Главная страница
                                             </span>
                                         </Link>
                                         <Link
                                             key={"Контакты"}
                                             to={`/contacts`}
-                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50 dark:hover:bg-gray-700"
                                         >
-                                            <span className="ml-3 text-base font-medium text-gray-900">
+                                            <span className="ml-3 text-base font-medium text-gray-900 dark:text-gray-200">
                                                 Контакты
                                             </span>
                                         </Link>
                                         <Link
                                             key={"О блоге"}
                                             to={`/about`}
-                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50 dark:hover:bg-gray-700"
                                         >
-                                            <span className="ml-3 text-base font-medium text-gray-900">
+                                            <span className="ml-3 text-base font-medium text-gray-900 dark:text-gray-200">
                                                 О блоге
                                             </span>
                                         </Link>
@@ -274,9 +274,9 @@ const HeaderComponent = () => {
                                         <Link
                                             key={item.title}
                                             to={`/category/${item.id}`}
-                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50 dark:hover:bg-gray-700"
                                         >
-                                            <span className="ml-3 text-base font-medium text-gray-900">
+                                            <span className="ml-3 text-base font-medium text-gray-900 dark:text-gray-200">
                                                 {item.title}
                                             </span>
                                         </Link>
@@ -285,7 +285,7 @@ const HeaderComponent = () => {
 
                                 {store.isAuth ? (
                                     <>
-                                        <div className="flex items-center justify-center px-8 py-2 font-medium text-indigo-600">
+                                        <div className="flex items-center justify-center px-8 py-2 font-medium text-indigo-600 dark:text-indigo-400">
                                             <UserIcon
                                                 className="h-6 w-6 mr-1"
                                                 aria-hidden="true"
@@ -303,11 +303,11 @@ const HeaderComponent = () => {
                                         >
                                             Войти
                                         </Button>
-                                        <p className="mt-6 text-center text-base font-medium text-gray-500">
+                                        <p className="mt-6 text-center text-base font-medium text-gray-500 dark:text-gray-400">
                                             Нет акаунта?{" "}
                                             <Link
                                                 to="/registration"
-                                                className="text-indigo-600 hover:text-indigo-500"
+                                                className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-200"
                                             >
                                                 Загеристрироваться
                                             </Link>

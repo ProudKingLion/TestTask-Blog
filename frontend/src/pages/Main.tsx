@@ -24,10 +24,10 @@ const Main = () => {
 
     return (
         <MainWrapper>
-            <section className="dark:bg-gray-900">
-                <div className="container shadow-lg max-w-7xl px-6 py-10 mx-auto min-h-[85vh]">
+            <section className="dark:bg-gray-800">
+                <div className="container shadow-lg max-w-7xl px-6 py-10 mx-auto min-h-[85vh] dark:shadow-gray-900">
                     {isLoading ? (
-                        "Loading"
+                        <div className="dark:text-gray-100">"Loading"</div>
                     ) : (
                         <>
                             <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">

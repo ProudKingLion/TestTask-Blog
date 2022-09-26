@@ -31,8 +31,8 @@ const CategoryId = () => {
 
     return (
         <MainWrapper>
-            <section className="dark:bg-gray-900">
-                <div className="container shadow-lg max-w-7xl min-h-[85vh] px-6 py-10 mx-auto">
+            <section className="dark:bg-gray-800 ">
+                <div className="container shadow-lg  dark:shadow-gray-900 max-w-7xl min-h-[85vh] px-6 py-10 mx-auto">
                     {isLoading ? (
                         "Loading"
                     ) : (

@@ -16,7 +16,7 @@ const ArticleListComponent: FC<IArticleListComponent> = ({
     return (
         <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             {isLoading ? (
-                "Loading"
+                <div className="dark:text-gray-100"> Загрузка...</div>
             ) : articles.length !== 0 ? (
                 articles.map((arlicle, index) => (
                     <ArticleBlock
@@ -28,7 +28,9 @@ const ArticleListComponent: FC<IArticleListComponent> = ({
                     />
                 ))
             ) : (
-                <div>В этой категории нет статей.</div>
+                <div className="dark:text-gray-100">
+                    В этой категории нет статей.
+                </div>
             )}
         </div>
     );
